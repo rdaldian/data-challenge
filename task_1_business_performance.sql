@@ -33,19 +33,19 @@ FROM (
       SELECT
         *
       FROM
-        `transfers`
+        `case_study.transfers`
       LEFT JOIN (
         SELECT
           *
         FROM
-          `transfers_meta`)
+          `case_study.transfers_meta`)
       USING
         (TRANSFER_ID)
       LEFT JOIN (
         SELECT
           *
         FROM
-          `users`)
+          `case_study.users`)
       USING
         (USER_ID)
       WHERE
@@ -60,7 +60,7 @@ FROM (
         TARGET_CURRENCY,
         RATE
       FROM
-        `fx_rates`
+        `case_study.fx_rates`
       WHERE
         SOURCE_CURRENCY = 'USD'
         AND TARGET_CURRENCY = 'GBP'),
@@ -73,7 +73,7 @@ FROM (
         TARGET_CURRENCY,
         INVERSE_RAATE AS INVERSE_RATE
       FROM
-        `fx_rates`
+        `case_study.fx_rates`
       WHERE
         SOURCE_CURRENCY = 'INR'
         AND TARGET_CURRENCY = 'GBP')
